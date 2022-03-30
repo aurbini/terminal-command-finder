@@ -1,20 +1,49 @@
 import 'reflect-metadata';
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
 
-import app from './app';
 import appDataSource from './DB/dbconfig';
-import router from './routes/api/index';
-import * as dotenv from 'dotenv';
-dotenv.config();
+import baseRouter from './routes';
 
-appDataSource
-  .initialize()
-  .then(async () => {
-    console.log(`Database connection established`);
-  })
-  .catch((error) => console.log(error));
+class Server {
+  private app;
 
-app.use('/', router);
+  constructor() {
+    this.app = express();
+    this.config();
+    this.routerConfig();
+    this.dbConnect();
+  }
 
-app.listen(process.env.APP_PORT, () => {
-  console.log(`Listening on port ${process.env.APP_PORT}`);
-});
+  private config() {
+    this.app.use(cors());
+    this.app.use(bodyParser.urlencoded({ extended: true }));
+    this.app.use(bodyParser.json({ limit: '1mb' })); // 100kb default
+  }
+
+  private dbConnect() {
+    appDataSource
+      .initialize()
+      .then(async () => {
+        console.log(`Database connection established`);
+      })
+      .catch((error) => console.log(error));
+  }
+
+  private routerConfig() {
+    this.app.use('/', baseRouter);
+  }
+
+  public start = (port: number) => {
+    return new Promise((resolve, reject) => {
+      this.app
+        .listen(port, () => {
+          resolve(port);
+        })
+        .on('error', (err: Object) => reject(err));
+    });
+  };
+}
+
+export default Server;

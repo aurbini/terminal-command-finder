@@ -1,17 +1,12 @@
-import express, { Response, NextFunction } from 'express';
-import * as bodyParser from 'body-parser';
-import routes from './routes';
+import server from './server';
 
-function handleError(err: any, __, res: Response, _next: NextFunction) {
-  res.status(err.statusCode || 500).send(err.message);
-}
+const port = parseInt(process.env.PORT || '4000');
 
-const app = express();
+const starter = new server()
+  .start(port)
+  .then((port) => console.log(`Running on port ${port}`))
+  .catch((error) => {
+    console.log(error);
+  });
 
-app.use(bodyParser.json());
-
-app.use('/', routes);
-
-app.use(handleError);
-
-export default app;
+export default starter;

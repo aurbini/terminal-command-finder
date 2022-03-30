@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/server.ts",
-    "dev": "nodemon -w *.ts -w .env src/server.ts",
+    "start": "ts-node src/app.ts",
+    "dev": "nodemon -w *.ts -w .env src/app.ts",
     "build": "tsc -p ."
   },
   "keywords": [],

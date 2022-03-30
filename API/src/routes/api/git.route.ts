@@ -4,6 +4,9 @@ const router = Router();
 
 const gitController = new GitController();
 
-router.route('/').post(gitController.createGitCommand);
+router
+  .route('/')
+  .get(gitController.fetchGitCommands)
+  .post(gitController.createGitCommand);
 
 export default router;

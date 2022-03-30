@@ -1,0 +1,18 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Command</th>
+      <th scope="col">Description</th>
+      <th scope="col">Categories</th>
+      <th scope="col">Views</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let command of commandList$; let i = index">
+      <th scope="row">{{ i }}</th>
+      <td>{{ command.command }}</td>
+      <td>{{ command.description }}</td>
+      <td>{{ command.views }}</td>
+    </tr>
+  </tbody>
+</table>
