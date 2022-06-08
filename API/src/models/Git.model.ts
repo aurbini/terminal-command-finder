@@ -1,5 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  JoinColumn,
+  ManyToOne,
+} from 'typeorm';
+import { TypeDetail } from './Type.model';
 @Entity()
 export class Git {
   @PrimaryGeneratedColumn()
@@ -18,4 +24,8 @@ export class Git {
 
   @Column('int')
   views: number;
+
+  @ManyToOne(() => TypeDetail, (typeDetail) => typeDetail.id)
+  @JoinColumn()
+  type: TypeDetail;
 }

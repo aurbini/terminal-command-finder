@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SiteLayoutComponent } from './layout/site-layout/site-layout.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AddComponent } from './pages/add/add.component';
+import { PrimeNGComponent } from './pages/prime-ng/prime-ng.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'add', component: AddComponent },
+      { path: 'primeNg', component: PrimeNGComponent },
     ],
   },
 ];

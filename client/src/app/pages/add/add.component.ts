@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-add',
@@ -9,7 +10,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class AddComponent implements OnInit {
   commandForm: FormGroup;
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private dataSvc: DataService
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -20,14 +25,17 @@ export class AddComponent implements OnInit {
       command: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
       categories: new FormArray([]),
-      views: new FormControl('', Validators.required),
     });
   }
   getControls() {
     return (<FormArray>this.commandForm.get('categories')).controls;
   }
 
-  onSubmit() {}
+  onFormSubmit() {
+    return this.dataSvc
+      .postCommand(this.commandForm.value)
+      .subscribe((res) => console.log(res));
+  }
 
   onAddCategory() {
     (<FormArray>this.commandForm.get('categories')).push(

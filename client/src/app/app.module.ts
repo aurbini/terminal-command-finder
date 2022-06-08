@@ -16,7 +16,9 @@ import { AddComponent } from './pages/add/add.component';
 import { DropdownDirective } from './directives/dropdown.directive';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
-
+import { PrimeNGComponent } from './pages/prime-ng/prime-ng.component';
+import { TableModule } from 'primeng/table';
+import { SortEvent } from 'primeng/api';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +31,7 @@ import { FormsModule } from '@angular/forms';
     CommandListComponent,
     CommandComponent,
     AddComponent,
+    PrimeNGComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    TableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

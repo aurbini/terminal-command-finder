@@ -11,6 +11,7 @@
     <tr *ngFor="let command of commandList$; let i = index">
       <th scope="row">{{ i }}</th>
       <td>{{ command.command }}</td>
+      <td>{{ command.typeName }}</td>
       <td>{{ command.description }}</td>
       <td>{{ command.views }}</td>
     </tr>

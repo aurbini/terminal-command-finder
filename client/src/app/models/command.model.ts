@@ -4,4 +4,5 @@ export interface CommandInterface {
   description: string;
   categories: string;
   views: number;
+  typeName: number;
 }

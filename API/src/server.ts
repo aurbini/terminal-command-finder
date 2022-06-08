@@ -26,6 +26,7 @@ class Server {
     appDataSource
       .initialize()
       .then(async () => {
+        this.seed();
         console.log(`Database connection established`);
       })
       .catch((error) => console.log(error));
@@ -44,6 +45,7 @@ class Server {
         .on('error', (err: Object) => reject(err));
     });
   };
+  seed() {}
 }
 
 export default Server;
